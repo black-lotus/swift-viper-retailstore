@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		1851B04CF7461301E11B98F8 /* Pods_RetailStoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73B47E4FE3C3ED10E230F5EB /* Pods_RetailStoreTests.framework */; };
 		1F7720C8461F7C44B864F263 /* Pods_RetailStoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB474D8F439279C887DE126E /* Pods_RetailStoreUITests.framework */; };
+		8D8D1537202891A20084AC92 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8D1536202891A20084AC92 /* AppDependencies.swift */; };
+		8D8D153A2028921E0084AC92 /* RootWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8D15392028921E0084AC92 /* RootWireframe.swift */; };
 		8DC1C56820286EB700681E55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC1C56720286EB700681E55 /* AppDelegate.swift */; };
-		8DC1C56A20286EB700681E55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC1C56920286EB700681E55 /* ViewController.swift */; };
 		8DC1C56D20286EB700681E55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DC1C56B20286EB700681E55 /* Main.storyboard */; };
 		8DC1C57020286EB700681E55 /* RetailStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DC1C56E20286EB700681E55 /* RetailStore.xcdatamodeld */; };
 		8DC1C57220286EB700681E55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DC1C57120286EB700681E55 /* Assets.xcassets */; };
@@ -70,9 +71,10 @@
 /* Begin PBXFileReference section */
 		636F98A5BDBCB470575D1C01 /* Pods-RetailStoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RetailStoreUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RetailStoreUITests/Pods-RetailStoreUITests.release.xcconfig"; sourceTree = "<group>"; };
 		73B47E4FE3C3ED10E230F5EB /* Pods_RetailStoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RetailStoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D8D1536202891A20084AC92 /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
+		8D8D15392028921E0084AC92 /* RootWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWireframe.swift; sourceTree = "<group>"; };
 		8DC1C56420286EB700681E55 /* RetailStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RetailStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC1C56720286EB700681E55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8DC1C56920286EB700681E55 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8DC1C56C20286EB700681E55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8DC1C56F20286EB700681E55 /* RetailStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RetailStore.xcdatamodel; sourceTree = "<group>"; };
 		8DC1C57120286EB700681E55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D8D1538202892130084AC92 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D8D15392028921E0084AC92 /* RootWireframe.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8DC1C55B20286EB700681E55 = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +170,6 @@
 			children = (
 				8DC1C5B62028710D00681E55 /* Resources */,
 				8DC1C59820286F3200681E55 /* Classes */,
-				8DC1C56920286EB700681E55 /* ViewController.swift */,
 				8DC1C56B20286EB700681E55 /* Main.storyboard */,
 				8DC1C57120286EB700681E55 /* Assets.xcassets */,
 				8DC1C57320286EB700681E55 /* LaunchScreen.storyboard */,
@@ -191,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				8DC1C56720286EB700681E55 /* AppDelegate.swift */,
+				8D8D1536202891A20084AC92 /* AppDependencies.swift */,
 				8DC1C59B20286F6100681E55 /* Store */,
 				8DC1C59A20286F5900681E55 /* Modules */,
 				8DC1C59920286F5100681E55 /* Common */,
@@ -201,6 +211,7 @@
 		8DC1C59920286F5100681E55 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8D8D1538202892130084AC92 /* View */,
 				8DC1C59F20286FA400681E55 /* Models */,
 				8DC1C59C20286F8400681E55 /* Constants */,
 			);
@@ -720,8 +731,8 @@
 			files = (
 				8DC1C5E520287B7D00681E55 /* ListInteractor.swift in Sources */,
 				8DC1C5B32028705700681E55 /* CoreDataStore.swift in Sources */,
+				8D8D153A2028921E0084AC92 /* RootWireframe.swift in Sources */,
 				8DC1C5E120287B7200681E55 /* ListPresenter.swift in Sources */,
-				8DC1C56A20286EB700681E55 /* ViewController.swift in Sources */,
 				8DC1C56820286EB700681E55 /* AppDelegate.swift in Sources */,
 				8DC1C5ED20287BF900681E55 /* Product.swift in Sources */,
 				8DC1C57020286EB700681E55 /* RetailStore.xcdatamodeld in Sources */,
@@ -729,6 +740,7 @@
 				8DC1C59E20286F8D00681E55 /* Constants.swift in Sources */,
 				8DC1C5E920287B8600681E55 /* ListDataManager.swift in Sources */,
 				8DC1C5F120287D5800681E55 /* CartItem.swift in Sources */,
+				8D8D1537202891A20084AC92 /* AppDependencies.swift in Sources */,
 				8DC1C5F72028869400681E55 /* ListTableViewCell.swift in Sources */,
 				8DC1C5D920287B5B00681E55 /* ListViewController.swift in Sources */,
 			);

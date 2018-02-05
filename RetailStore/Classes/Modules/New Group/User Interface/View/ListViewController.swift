@@ -33,6 +33,11 @@ class ListViewController: UIViewController {
     
         self.eventHandler?.updateView()
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
  
     fileprivate func registerCells() {
         self.tableView.register(UINib(
@@ -49,6 +54,7 @@ class ListViewController: UIViewController {
         
         let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<NSNumber, Product>>(configureCell: {(_, tableView: UITableView, indexPath: IndexPath, product: Product) -> UITableViewCell in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as? ListTableViewCell else {
+                print("no cell found")
                 return UITableViewCell()
             }
 
@@ -69,6 +75,14 @@ class ListViewController: UIViewController {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.rowHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     //MARK:
