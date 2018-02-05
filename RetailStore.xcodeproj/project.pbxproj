@@ -45,6 +45,8 @@
 		8DC1C5F120287D5800681E55 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC1C5F020287D5800681E55 /* CartItem.swift */; };
 		8DC1C5F220287D5800681E55 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC1C5F020287D5800681E55 /* CartItem.swift */; };
 		8DC1C5F320287D5800681E55 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC1C5F020287D5800681E55 /* CartItem.swift */; };
+		8DC1C5F72028869400681E55 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC1C5F52028869400681E55 /* ListTableViewCell.swift */; };
+		8DC1C5F82028869400681E55 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC1C5F62028869400681E55 /* ListTableViewCell.xib */; };
 		CAF246CEE3E36C3E381CC498 /* Pods_RetailStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E954CE857CFE7E76DB082E1D /* Pods_RetailStore.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +94,8 @@
 		8DC1C5E820287B8600681E55 /* ListDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataManager.swift; sourceTree = "<group>"; };
 		8DC1C5EC20287BF900681E55 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		8DC1C5F020287D5800681E55 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
+		8DC1C5F52028869400681E55 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		8DC1C5F62028869400681E55 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		B36204FFDE0992BB913A237B /* Pods-RetailStoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RetailStoreUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RetailStoreUITests/Pods-RetailStoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CB474D8F439279C887DE126E /* Pods_RetailStoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RetailStoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4BDF4474C0605C69ED5E286 /* Pods-RetailStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RetailStore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RetailStore/Pods-RetailStore.debug.xcconfig"; sourceTree = "<group>"; };
@@ -349,6 +353,7 @@
 		8DC1C5D320287B3600681E55 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8DC1C5F42028867C00681E55 /* TableView Cells */,
 				8DC1C5D820287B5B00681E55 /* ListViewController.swift */,
 			);
 			path = View;
@@ -376,6 +381,15 @@
 				8DC1C5E420287B7D00681E55 /* ListInteractor.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		8DC1C5F42028867C00681E55 /* TableView Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8DC1C5F52028869400681E55 /* ListTableViewCell.swift */,
+				8DC1C5F62028869400681E55 /* ListTableViewCell.xib */,
+			);
+			path = "TableView Cells";
 			sourceTree = "<group>";
 		};
 		AED086D7F7D8DCF75FD276FB /* Frameworks */ = {
@@ -521,6 +535,7 @@
 				8DC1C57520286EB700681E55 /* LaunchScreen.storyboard in Resources */,
 				8DC1C57220286EB700681E55 /* Assets.xcassets in Resources */,
 				8DC1C56D20286EB700681E55 /* Main.storyboard in Resources */,
+				8DC1C5F82028869400681E55 /* ListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,12 +631,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RetailStore/Pods-RetailStore-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -710,6 +729,7 @@
 				8DC1C59E20286F8D00681E55 /* Constants.swift in Sources */,
 				8DC1C5E920287B8600681E55 /* ListDataManager.swift in Sources */,
 				8DC1C5F120287D5800681E55 /* CartItem.swift in Sources */,
+				8DC1C5F72028869400681E55 /* ListTableViewCell.swift in Sources */,
 				8DC1C5D920287B5B00681E55 /* ListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

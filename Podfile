@@ -8,6 +8,7 @@ target 'RetailStore' do
   # Pods for RetailStore
   pod 'RxSwift',    '~> 4.0'
   pod 'RxCocoa',    '~> 4.0'
+  pod 'RxDataSources', '~> 3.0'
 
   target 'RetailStoreTests' do
     inherit! :search_paths
