@@ -62,4 +62,8 @@ class ListDataManager {
         return productsArray
     }
     
+    func deleteCartItem(withProductId productId: Int16) {
+        coreDataStore.deleteCartItem(withProductId: productId)
+    }
+    
 }

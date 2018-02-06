@@ -93,4 +93,8 @@ class ListInteractor {
         return returnValue
     }
     
+    func deleteCartItem(withProductId productId: Int16) {
+        dataManager.deleteCartItem(withProductId: productId)
+    }
+    
 }

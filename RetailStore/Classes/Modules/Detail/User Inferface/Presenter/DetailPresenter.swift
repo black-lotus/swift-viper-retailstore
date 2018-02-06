@@ -17,4 +17,16 @@ class DetailPresenter {
     var userInterface : DetailViewController?
     var disposeBag: DisposeBag = DisposeBag()
     
+    func add(toCart productId: NSNumber) {
+        detailInteractor?.save(toCart: productId.int16Value, withCompletionBlock: { saved in
+            if saved {
+                self.detailWireframe?.displayAlert(title: "Added", message: "Product added to the Cart")
+                self.userInterface?.updateCartCount()
+            }
+            else {
+                self.detailWireframe?.displayAlert()
+            }
+        })
+    }
+    
 }

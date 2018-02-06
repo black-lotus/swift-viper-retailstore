@@ -50,6 +50,11 @@ class ListViewController: UIViewController {
             nibName: "ListTableViewCell",
             bundle: Bundle.main
         ), forCellReuseIdentifier: ListTableViewCell.identifier)
+        
+        self.tableView.register(UINib(
+            nibName: "ListTotalTableViewCell",
+            bundle: Bundle.main
+        ), forCellReuseIdentifier: ListTotalTableViewCell.identifier)
     }
     
     func configureView() {
@@ -57,7 +62,7 @@ class ListViewController: UIViewController {
         navigationItem.title = screenType.title()
         
         // Cart Button Configuration
-        configureCart(in: self)
+        self.configureCart(in: self)
         
         // Table View Configuration
         let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<NSNumber, Product>>(configureCell: {(_, tableView: UITableView, indexPath: IndexPath, product: Product) -> UITableViewCell in
@@ -71,6 +76,10 @@ class ListViewController: UIViewController {
 
             return cell
         })
+        
+        dataSource.canEditRowAtIndexPath = { (dataSource, indexPath) -> Bool in
+            return self.screenType == .Cart
+        }
         
         dataSource.titleForHeaderInSection = { dataSource, sectionIndex in
             return Category(rawValue: dataSource[sectionIndex].model.intValue)?.title()
@@ -86,21 +95,51 @@ class ListViewController: UIViewController {
                 return (indexPath, dataSource[indexPath])
             }
             .subscribe(onNext: { indexPath, model in
-                //Navigate to Detail screen from here
+                // Navigate to Detail screen from here
                 self.eventHandler?.showDetail(product: model)
             })
             .disposed(by: disposeBag)
         
+        tableView.rx
+            .itemDeleted
+            .map { indexPath in
+                return (indexPath, dataSource[indexPath])
+            }
+            .subscribe(onNext: { indexPath, model in
+                self.deleteCartItem(withProduct: model)
+            })
+            .disposed(by: disposeBag)
+        
+        tableView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
+        
+    }
+    
+    func deleteCartItem(withProduct product: Product) {
+        eventHandler?.deleteCartItem(withProductId: product.productId.int16Value)
+        updateCartCount()
+        eventHandler?.updateView(screenType: screenType)
     }
     
     
     func showProducts(sectioned data: [SectionModel<NSNumber, Product>]) {
         if screenType == ScreenType.Cart {
             totalPrice = calculateTotalPrice(sectioned: data)
-            // tableView.tableFooterView = totalCellView()
+            tableView.tableFooterView = totalCellView()
         }
         
         dataVariableArray.value = data
+    }
+    
+    func totalCellView() -> UITableViewCell {
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: ListTotalTableViewCell.identifier) as? ListTotalTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.configure(withPrice: self.totalPrice)
+        
+        return cell
     }
     
     func calculateTotalPrice(sectioned data: [SectionModel<NSNumber, Product>]) -> Int {
@@ -112,6 +151,11 @@ class ListViewController: UIViewController {
         }
         
         return total
+    }
+    
+    func updatedCartItems(_ cartItems: [CartItem]) {
+        self.cartItems = cartItems
+        updateCartCount()
     }
     
 }
@@ -133,6 +177,22 @@ extension ListViewController: UITableViewDelegate {
         return UITableViewAutomaticDimension
     }
     
+    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+        if screenType == .Cart {
+            return true
+        }
+        
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if screenType == .Cart {
+            return .delete
+        }
+        
+        return .none
+    }
+    
 }
 
 
@@ -140,11 +200,6 @@ extension ListViewController: Cart {
     
     func cartIconTapped() {
         navigate(toCart: self)
-    }
-    
-    func updatedCartItems(_ cartItems: [CartItem]) {
-        self.cartItems = cartItems
-        updateCartCount()
     }
     
 }

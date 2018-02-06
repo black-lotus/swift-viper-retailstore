@@ -67,4 +67,8 @@ class ListPresenter {
         listWireframe?.navigateToDetail(withProduct: product)
     }
     
+    func deleteCartItem(withProductId productId: Int16) {
+        listInteractor?.deleteCartItem(withProductId: productId)
+    }
+    
 }

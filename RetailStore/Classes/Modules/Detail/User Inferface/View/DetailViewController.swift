@@ -25,12 +25,13 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureView()
+        self.configureView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.updateCartCount()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,6 +44,9 @@ class DetailViewController: UIViewController {
     
     func configureView() {
         navigationItem.title = "Product Detail"
+        
+        // Cart Button Configuration
+        self.configureCart(in: self)
         
         //Binding data
         nameLabel.text = product?.name
@@ -57,8 +61,27 @@ class DetailViewController: UIViewController {
     //MARK:
     //MARK: Actions
     @IBAction func addToCartButtonTapped(_ sender: Any) {
-        
+        if let productId = product?.productId {
+            eventHandler?.add(toCart: productId)
+            addToCartButton.isUserInteractionEnabled = false
+            addToCartButton.setTitle("Added!", for: .normal)
+        }
     }
-    
 
 }
+
+
+extension DetailViewController: Cart {
+    
+    func cartIconTapped() {
+        navigate(toCart: self)
+    }
+    
+    
+}
+
+
+
+
+
+

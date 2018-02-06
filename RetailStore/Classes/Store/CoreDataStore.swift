@@ -44,6 +44,7 @@ class CoreDataStore : NSObject {
             completionBlock(entries)
         })
     }
+    
     func fetchEntriesWithPredicate(_ completionBlock: (([CartItem]) -> Void)!) {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult>  = NSFetchRequest(entityName: "CartItem")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "productId", ascending: true)]

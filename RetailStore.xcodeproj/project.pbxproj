@@ -73,6 +73,10 @@
 		F12F7C2C2029B48D00F6ABCE /* RootWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8D15392028921E0084AC92 /* RootWireframe.swift */; };
 		F12F7C2D2029B9C300F6ABCE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC1C59D20286F8D00681E55 /* Constants.swift */; };
 		F12F7C2E2029B9C400F6ABCE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC1C59D20286F8D00681E55 /* Constants.swift */; };
+		F12F7C312029D37300F6ABCE /* ListTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12F7C2F2029D37300F6ABCE /* ListTotalTableViewCell.swift */; };
+		F12F7C322029D37300F6ABCE /* ListTotalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F12F7C302029D37300F6ABCE /* ListTotalTableViewCell.xib */; };
+		F12F7C332029D42D00F6ABCE /* ListTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12F7C2F2029D37300F6ABCE /* ListTotalTableViewCell.swift */; };
+		F12F7C342029D42E00F6ABCE /* ListTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12F7C2F2029D37300F6ABCE /* ListTotalTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +138,8 @@
 		F1067F812029A64F0028E63C /* DetailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailManager.swift; sourceTree = "<group>"; };
 		F1067F852029A65C0028E63C /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
 		F12F7C272029B37A00F6ABCE /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		F12F7C2F2029D37300F6ABCE /* ListTotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTotalTableViewCell.swift; sourceTree = "<group>"; };
+		F12F7C302029D37300F6ABCE /* ListTotalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTotalTableViewCell.xib; sourceTree = "<group>"; };
 		FC49281AE9A49C6363F94283 /* Pods-RetailStoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RetailStoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RetailStoreTests/Pods-RetailStoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -357,6 +363,8 @@
 			children = (
 				8DC1C5F52028869400681E55 /* ListTableViewCell.swift */,
 				8DC1C5F62028869400681E55 /* ListTableViewCell.xib */,
+				F12F7C2F2029D37300F6ABCE /* ListTotalTableViewCell.swift */,
+				F12F7C302029D37300F6ABCE /* ListTotalTableViewCell.xib */,
 			);
 			path = "TableView Cells";
 			sourceTree = "<group>";
@@ -587,6 +595,7 @@
 			files = (
 				8DC1C5B82028711F00681E55 /* Products.plist in Resources */,
 				8DC1C57520286EB700681E55 /* LaunchScreen.storyboard in Resources */,
+				F12F7C322029D37300F6ABCE /* ListTotalTableViewCell.xib in Resources */,
 				8DC1C57220286EB700681E55 /* Assets.xcassets in Resources */,
 				8DC1C56D20286EB700681E55 /* Main.storyboard in Resources */,
 				8DC1C5F82028869400681E55 /* ListTableViewCell.xib in Resources */,
@@ -784,6 +793,7 @@
 				8DC1C5ED20287BF900681E55 /* Product.swift in Sources */,
 				8DC1C57020286EB700681E55 /* RetailStore.xcdatamodeld in Sources */,
 				8DC1C5DD20287B6600681E55 /* ListWireframe.swift in Sources */,
+				F12F7C312029D37300F6ABCE /* ListTotalTableViewCell.swift in Sources */,
 				8DC1C59E20286F8D00681E55 /* Constants.swift in Sources */,
 				8DC1C5E920287B8600681E55 /* ListDataManager.swift in Sources */,
 				8DC1C5F120287D5800681E55 /* CartItem.swift in Sources */,
@@ -808,6 +818,7 @@
 				F1067F782029A5E20028E63C /* DetailPresenter.swift in Sources */,
 				8DC1C5E220287B7200681E55 /* ListPresenter.swift in Sources */,
 				F1067F892029AFB60028E63C /* ListTableViewCell.swift in Sources */,
+				F12F7C332029D42D00F6ABCE /* ListTotalTableViewCell.swift in Sources */,
 				8DC1C5F220287D5800681E55 /* CartItem.swift in Sources */,
 				F1067F872029A65C0028E63C /* DetailInteractor.swift in Sources */,
 				8DC1C5DE20287B6600681E55 /* ListWireframe.swift in Sources */,
@@ -833,6 +844,7 @@
 				F1067F792029A5E20028E63C /* DetailPresenter.swift in Sources */,
 				8DC1C5E320287B7200681E55 /* ListPresenter.swift in Sources */,
 				F1067F8A2029AFB70028E63C /* ListTableViewCell.swift in Sources */,
+				F12F7C342029D42E00F6ABCE /* ListTotalTableViewCell.swift in Sources */,
 				8DC1C5F320287D5800681E55 /* CartItem.swift in Sources */,
 				F1067F882029A65C0028E63C /* DetailInteractor.swift in Sources */,
 				8DC1C5DF20287B6600681E55 /* ListWireframe.swift in Sources */,
