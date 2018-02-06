@@ -13,6 +13,7 @@ import RxDataSources
 
 class ListPresenter {
     
+    var listWireframe : ListWireframe?
     var listInteractor : ListInteractor?
     var userInterface : ListViewController?
     let disposeBag = DisposeBag()
@@ -33,6 +34,10 @@ class ListPresenter {
     
     func updateUserInterface(withSectionedProducts sectionedProducts: [SectionModel<NSNumber, Product>]) {
         userInterface?.showProducts(sectioned: sectionedProducts)
+    }
+    
+    func showDetail(product: Product) {
+        listWireframe?.navigateToDetail(withProduct: product)
     }
     
 }

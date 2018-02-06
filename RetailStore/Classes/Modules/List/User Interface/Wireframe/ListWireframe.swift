@@ -41,4 +41,15 @@ class ListWireframe : NSObject {
         return storyboard
     }
     
+    func navigateToDetail(withProduct product: Product) {
+        let detailWireframe = DetailWireframe()
+        let detailManager = DetailManager()
+        let detailInteractor = DetailInteractor(detailManager: detailManager)
+        let detailPresenter = DetailPresenter()
+        detailPresenter.detailInteractor = detailInteractor
+        detailPresenter.detailWireframe = detailWireframe
+        detailWireframe.detailPresenter = detailPresenter
+        detailWireframe.presentDetailInterface(fromViewController: listViewController!, withProduct: product)
+    }
+    
 }

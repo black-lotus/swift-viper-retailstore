@@ -68,8 +68,19 @@ class ListViewController: UIViewController {
         }
         
         dataArray.asObservable()
-            .bindTo(tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(disposeBag)
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        tableView.rx
+            .itemSelected
+            .map { indexPath in
+                return (indexPath, dataSource[indexPath])
+            }
+            .subscribe(onNext: { indexPath, model in
+                //Navigate to Detail screen from here
+                self.eventHandler?.showDetail(product: model)
+            })
+            .disposed(by: disposeBag)
         
     }
     
