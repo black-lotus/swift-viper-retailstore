@@ -9,13 +9,26 @@
 import Foundation
 
 class ListDataManager {
+    
     var coreDataStore = CoreDataStore.sharedInstance
     var productsArray = [Product]()
+    var cartItems = [CartItem]()
     
     init() {
         if let products = readProductsFromPlist() {
             productsArray = products
         }
+        
+        cartItems(fromStore: ({ items in
+            //TODO: Weak Self
+            self.cartItems = items
+        }))
+    }
+    
+    func cartItems(fromStore completion: (([CartItem]) -> Void)!) {
+        coreDataStore.fetchEntriesWithPredicate({ entries in
+            completion(entries)
+        })
     }
     
     //MARK: Products Fetcher Methods

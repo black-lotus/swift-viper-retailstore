@@ -17,7 +17,12 @@ class ListViewController: UIViewController {
     
     var eventHandler : ListPresenter?
     
-    var dataArray: Variable<[SectionModel<NSNumber, Product>]> = Variable([])
+    var totalPrice: Int = 0
+    var cartItems = [CartItem]()
+    var screenType = ScreenType.List
+    
+    var dataArray = [Product]()
+    var dataVariableArray: Variable<[SectionModel<NSNumber, Product>]> = Variable([])
     
     let disposeBag = DisposeBag()
     
@@ -31,7 +36,8 @@ class ListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     
-        self.eventHandler?.updateView()
+        self.updateCartCount()
+        self.eventHandler?.updateView(screenType: screenType)
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,17 +53,20 @@ class ListViewController: UIViewController {
     }
     
     func configureView() {
-        //Title
-        navigationItem.title = "Products"
+        // Title
+        navigationItem.title = screenType.title()
         
-        //Table View Configuration
+        // Cart Button Configuration
+        configureCart(in: self)
         
+        // Table View Configuration
         let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<NSNumber, Product>>(configureCell: {(_, tableView: UITableView, indexPath: IndexPath, product: Product) -> UITableViewCell in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as? ListTableViewCell else {
                 print("no cell found")
                 return UITableViewCell()
             }
 
+            cell.screenType = self.screenType
             cell.configureWithProduct(product: product)
 
             return cell
@@ -67,7 +76,7 @@ class ListViewController: UIViewController {
             return Category(rawValue: dataSource[sectionIndex].model.intValue)?.title()
         }
         
-        dataArray.asObservable()
+        dataVariableArray.asObservable()
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
@@ -84,6 +93,34 @@ class ListViewController: UIViewController {
         
     }
     
+    
+    func showProducts(sectioned data: [SectionModel<NSNumber, Product>]) {
+        if screenType == ScreenType.Cart {
+            totalPrice = calculateTotalPrice(sectioned: data)
+            // tableView.tableFooterView = totalCellView()
+        }
+        
+        dataVariableArray.value = data
+    }
+    
+    func calculateTotalPrice(sectioned data: [SectionModel<NSNumber, Product>]) -> Int {
+        var total = 0
+        for section in data {
+            for product in section.items {
+                total += product.price.intValue
+            }
+        }
+        
+        return total
+    }
+    
+}
+
+
+// MARK: - UITableView Delegate
+
+extension ListViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
@@ -96,11 +133,21 @@ class ListViewController: UIViewController {
         return UITableViewAutomaticDimension
     }
     
-    //MARK:
-    //MARK: Other Methods
-    func showProducts(sectioned data: [SectionModel<NSNumber, Product>]) {
-        dataArray.value = data
+}
+
+
+extension ListViewController: Cart {
+    
+    func cartIconTapped() {
+        navigate(toCart: self)
+    }
+    
+    func updatedCartItems(_ cartItems: [CartItem]) {
+        self.cartItems = cartItems
+        updateCartCount()
     }
     
 }
+
+
 

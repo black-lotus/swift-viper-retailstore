@@ -16,6 +16,8 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet private var priceLabel: UILabel!
     @IBOutlet internal var productImageView: UIImageView!
     
+    var screenType = ScreenType.List
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -34,6 +36,13 @@ class ListTableViewCell: UITableViewCell {
         
         nameLabel.text = productName
         productImageView.image = UIImage(named: product.imageName)
+        
+        if screenType == .Cart {
+            priceLabel.isHidden = false
+            if let price = product.price {
+                priceLabel.text = "Rs. \(price)"
+            }
+        }
     }
     
 }

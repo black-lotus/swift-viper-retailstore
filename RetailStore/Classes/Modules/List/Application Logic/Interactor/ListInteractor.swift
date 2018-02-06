@@ -14,10 +14,35 @@ class ListInteractor {
     
     let dataManager : ListDataManager
     
+    var cartItems: Variable<[CartItem]> = Variable([])
     var products: Variable<[Product]> = Variable([])
     
     init(dataManager: ListDataManager) {
         self.dataManager = dataManager
+    }
+    
+    func fetchCartItemsFromStore() -> Observable<[CartItem]> {
+        self.cartItems.value.removeAll()
+        for item in dataManager.cartItems {
+            self.cartItems.value.append(item)
+        }
+        
+        return Observable.create { observer in
+            observer.onNext(self.cartItems.value)
+            return Disposables.create()
+        }
+    }
+    
+    func cartItemProducts(cartItems: [CartItem]) -> [Product] {
+        var filteredProducts = [Product]()
+        for item in cartItems {
+            let fetchedProducts = filterProducts(data: dataManager.productsArray, withProductId: item.productId)
+            if fetchedProducts.count > 0 {
+                filteredProducts.append(fetchedProducts[0])
+            }
+        }
+        
+        return filteredProducts
     }
     
     func fetchProductsFromStore() -> Observable<[Product]> {
@@ -57,6 +82,13 @@ class ListInteractor {
     func filterProducts(data: [Product], withCategoryId categoryId: Int) -> [Product] {
         let returnValue = data.filter({
             return $0.categoryId.intValue == categoryId
+        })
+        return returnValue
+    }
+    
+    func filterProducts(data: [Product], withProductId productId: Int16) -> [Product] {
+        let returnValue = data.filter({
+            return $0.productId.int16Value == productId
         })
         return returnValue
     }

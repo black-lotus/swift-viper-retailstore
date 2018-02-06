@@ -52,4 +52,11 @@ class ListWireframe : NSObject {
         detailWireframe.presentDetailInterface(fromViewController: listViewController!, withProduct: product)
     }
     
+    func navigate(toCart fromViewController: UIViewController) {
+        let cartViewController = configuredListViewController()
+        cartViewController.screenType = .Cart
+        fromViewController.navigationController?.pushViewController(cartViewController, animated: true)
+    }
+    
+    
 }

@@ -18,7 +18,24 @@ class ListPresenter {
     var userInterface : ListViewController?
     let disposeBag = DisposeBag()
     
-    func updateView() {
+    func updateView(screenType: ScreenType) {
+        //Cart Items
+        listInteractor?.fetchCartItemsFromStore()
+            .asObservable().subscribe( {onNext in
+                guard let cartItems = self.listInteractor?.cartItems else {
+                    return
+                }
+                self.updateUserInterface(with: cartItems.value)
+                if let filteredProducts = self.listInteractor?.cartItemProducts(cartItems: cartItems.value) {
+                    if let sectioned = self.listInteractor?.sectionedData(data: filteredProducts) {
+                        if (screenType == .Cart) {
+                            self.updateUserInterface(withCartSectionedProducts: sectioned)
+                        }
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
         //Products
         listInteractor?.fetchProductsFromStore()
             .asObservable().subscribe( {onNext in
@@ -26,10 +43,20 @@ class ListPresenter {
                     return
                 }
                 if let sectioned = self.listInteractor?.sectionedData(data: products.value) {
-                    self.updateUserInterface(withSectionedProducts: sectioned)
+                    if screenType == .List {
+                        self.updateUserInterface(withSectionedProducts: sectioned)
+                    }
                 }
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
+    }
+    
+    func updateUserInterface(with cartItems: [CartItem]) {
+        userInterface?.updatedCartItems(cartItems)
+    }
+    
+    func updateUserInterface(withCartSectionedProducts sectionedProducts: [SectionModel<NSNumber, Product>]) {
+        userInterface?.showProducts(sectioned: sectionedProducts)
     }
     
     func updateUserInterface(withSectionedProducts sectionedProducts: [SectionModel<NSNumber, Product>]) {
